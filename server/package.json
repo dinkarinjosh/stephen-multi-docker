@@ -1,0 +1,22 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "start": "node index.mjs"
+  },
+  "keywords": [],
+  "author": "dinkar joshi <=dinkarjoshi21@gmail.com>",
+  "license": "MITDJ",
+  "dependencies": {
+    "express": "*",
+    "pg": "8.0.3",
+    "nodemon": "*",
+    "cors": "2.8.4",
+    "redis": "2.8.0"
+  }
+}
