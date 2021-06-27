@@ -1,18 +1,18 @@
 sudo: required
-services: 
-- docker
-before_install : docker image build -t dinkarinjosh/react-test -f ./client/Dockerfile.dev ./client
- - docker run -e CI=true dinkarinjosh/react-test npm run test -- --coverage
+services:
+  - docker
+before_install:
+  - docker image build -t dinkarinjosh/react-test -f ./client/Dockerfile.dev ./client
+script:
+  - docker run -eCI=true dinkarinjosh/react-test npm run test -- --coverage
 
 after_success:
- - docker image build -t dinkarinjosh/multi-worker ./worker 
- - docker image build -t dinkarinjosh/multi-server ./server
- - docker image build -t dinkarinjosh/multi-nginx ./nginx 
- - docker image build -t dinkarinjosh/multi-client ./client
- - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
- - docker push dinkarjosh/multi-client
- - docker push dinkarjosh/multi-nginx
- - docker push dinkarjosh/multi-server
- - docker push dinkarjosh/multi-worker
-
- 
+  - docker image build -t dinkarinjosh/multi-worker ./worker
+  - docker image build -t dinkarinjosh/multi-server ./server
+  - docker image build -t dinkarinjosh/multi-nginx ./nginx
+  - docker image build -t dinkarinjosh/multi-client ./client
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push dinkarjosh/multi-client
+  - docker push dinkarjosh/multi-nginx
+  - docker push dinkarjosh/multi-server
+  - docker push dinkarjosh/multi-worker
