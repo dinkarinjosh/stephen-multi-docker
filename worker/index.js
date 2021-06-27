@@ -1,12 +1,13 @@
-import keys from "./keys.mjs";
-import redis from "redis";
+const keys = require("./keys");
+const redis = require("redis");
 
 const redisClient = redis.createClient({
   host: keys.redisHost,
   port: keys.redisPort,
   retryStrategy: () => 1000,
 });
-
+console.log(keys.redisHost);
+console.log(keys.redisPort);
 const sub = redisClient.duplicate();
 const fibArray = [];
 const fibCalculate = (index) => {
@@ -17,9 +18,11 @@ const fibCalculate = (index) => {
   return fibArray[index];
 };
 
-console.log(fibCalculate(10));
 sub.on("message", (channel, message) => {
-  redisClient.hset("values", message, fibCalculate(message * 1));
+  console.log(message);
+  console.log("--worker---");
+  console.log(typeof message);
+  redisClient.hset("values", message, fibCalculate(parseInt(message)));
 });
 
-sub.subscribe("insert")
+sub.subscribe('insert');
