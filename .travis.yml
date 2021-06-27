@@ -12,7 +12,7 @@ after_success:
   - docker image build -t dinkarinjosh/multi-nginx ./nginx
   - docker image build -t dinkarinjosh/multi-client ./client
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push dinkarjosh/multi-client
-  - docker push dinkarjosh/multi-nginx
-  - docker push dinkarjosh/multi-server
-  - docker push dinkarjosh/multi-worker
+  - docker push dinkarinjosh/multi-client
+  - docker push dinkarinjosh/multi-nginx
+  - docker push dinkarinjosh/multi-server
+  - docker push dinkarinjosh/multi-worker
